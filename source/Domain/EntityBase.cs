@@ -1,4 +1,6 @@
-﻿namespace Source.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Source.Domain;
 
 /// <summary>
 /// A base entity that all other entities should inherit from
@@ -8,6 +10,7 @@ public class EntityBase
     /// <summary>
     /// The unique identifier for this entity.
     /// </summary>
+    [Key]
     public uint Id { get; set; }
     /// <summary>
     /// The date and time this entity was created.
