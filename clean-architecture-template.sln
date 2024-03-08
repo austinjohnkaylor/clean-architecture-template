@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "source\Domain\Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "source\Application\Application.csproj", "{FC6EA05B-DE19-4740-A11C-FEE3D6DE7C83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "source\Infrastructure\Infrastructure.csproj", "{F76176A9-0889-4A2D-A104-60AC73DBACA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{68397AB5-1BAB-4BDE-99C6-D4718B3A2A0E} = {2099E517-8D04-4F02-9543-DEE9DF69FDC6}
 		{FC6EA05B-DE19-4740-A11C-FEE3D6DE7C83} = {2099E517-8D04-4F02-9543-DEE9DF69FDC6}
+		{F76176A9-0889-4A2D-A104-60AC73DBACA8} = {2099E517-8D04-4F02-9543-DEE9DF69FDC6}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{68397AB5-1BAB-4BDE-99C6-D4718B3A2A0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -32,5 +35,9 @@ Global
 		{FC6EA05B-DE19-4740-A11C-FEE3D6DE7C83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC6EA05B-DE19-4740-A11C-FEE3D6DE7C83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC6EA05B-DE19-4740-A11C-FEE3D6DE7C83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F76176A9-0889-4A2D-A104-60AC73DBACA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F76176A9-0889-4A2D-A104-60AC73DBACA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F76176A9-0889-4A2D-A104-60AC73DBACA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F76176A9-0889-4A2D-A104-60AC73DBACA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
