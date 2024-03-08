@@ -18,6 +18,6 @@ public class UnitTestDiscoverer : ITraitDiscoverer
 {
     public IEnumerable<KeyValuePair<string, string>> GetTraits(IAttributeInfo traitAttribute)
     {
-        yield return new KeyValuePair<string, string>("Category", "UnitTest");
+        yield return new KeyValuePair<string, string>("Category", "Unit Test");
     }
 }

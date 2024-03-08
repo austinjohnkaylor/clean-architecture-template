@@ -18,6 +18,6 @@ public class ArchitectureTestDiscoverer : ITraitDiscoverer
 {
     public virtual IEnumerable<KeyValuePair<string, string>> GetTraits(IAttributeInfo traitAttribute)
     {
-        yield return new KeyValuePair<string, string>("Category", "ArchitectureTest");
+        yield return new KeyValuePair<string, string>("Category", "Architecture Test");
     }
 }
