@@ -31,6 +31,9 @@ app.MapControllers();
 
 app.Run();
 
-public partial class Program
+namespace Source.API
 {
+    public partial class Program
+    {
+    }
 }
