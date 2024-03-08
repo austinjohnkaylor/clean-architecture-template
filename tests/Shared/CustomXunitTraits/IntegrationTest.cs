@@ -6,7 +6,13 @@
 /// <remarks>https://www.brendanconnolly.net/organizing-tests-with-xunit-traits/</remarks>
 [TraitDiscoverer("Tests.Shared.CustomXunitTraits.IntegrationTestDiscoverer", nameof(Shared))]
 [AttributeUsage(AttributeTargets.Class)]
-public class IntegrationTestAttribute : Attribute, ITraitAttribute;
+public class IntegrationTestAttribute : Attribute, ITraitAttribute
+{
+    public IntegrationTestAttribute()
+    {
+        
+    }
+}
 
 public class IntegrationTestDiscoverer : ITraitDiscoverer
 {
