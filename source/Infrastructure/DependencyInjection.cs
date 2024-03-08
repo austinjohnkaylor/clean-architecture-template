@@ -17,8 +17,10 @@ public static class DependencyInjection
     /// <param name="services"></param>
     /// <param name="connectionString">The connection string for the SQL Server</param>
     /// <returns></returns>
-    public static void AddInfrastructure(this IServiceCollection services, string connectionString)
+    public static void AddInfrastructureLayer(this IServiceCollection services, string? connectionString)
     {
+        ArgumentNullException.ThrowIfNull(connectionString);
+
         services.AddDbContext<DatabaseContext>(options =>
         {
             options.UseSqlServer(connectionString, b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName));
