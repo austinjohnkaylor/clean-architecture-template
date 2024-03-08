@@ -3,7 +3,7 @@
 namespace Source.Application;
 
 /// <summary>
-/// A class for injecting services into microsoft's service collection 
+/// A class for injecting the Application Layer's services into microsoft's service collection 
 /// </summary>
 public static class DependencyInjection
 {
