@@ -22,7 +22,7 @@ public class RepositoryBase<T>(ILogger<UnitOfWork> logger, DatabaseContext datab
     public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default)
     {
         logger.LogInformation("Getting all {entity}s.", typeof(T).Name);
-        return await _entity.ToListAsync(cancellationToken: cancellationToken);
+        return await _entity.AsNoTracking().ToListAsync(cancellationToken: cancellationToken);
     }
 
     /// <summary>
@@ -47,7 +47,7 @@ public class RepositoryBase<T>(ILogger<UnitOfWork> logger, DatabaseContext datab
     public async Task<IEnumerable<T>> GetWhereAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
     {
         logger.LogInformation("Getting a list of {entity}s by {predicate}.", typeof(T).Name, predicate.Body.ToString());
-        var result = await _entity.Where(predicate).ToListAsync(cancellationToken: cancellationToken);
+        var result = await _entity.Where(predicate).AsNoTracking().ToListAsync(cancellationToken);
         return result;
     }
 
