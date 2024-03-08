@@ -4,7 +4,7 @@
 /// Apply this attribute to your xUnit test class to specify it is a Unit test
 /// </summary>
 /// <remarks>https://www.brendanconnolly.net/organizing-tests-with-xunit-traits/</remarks>
-[TraitDiscoverer(nameof(UnitTestDiscoverer), nameof(Shared))] 
+[TraitDiscoverer("Tests.Shared.CustomXunitTraits.UnitTestDiscoverer", nameof(Shared))] 
 [AttributeUsage(AttributeTargets.Class)]
 public class UnitTestAttribute : Attribute, ITraitAttribute;
 
