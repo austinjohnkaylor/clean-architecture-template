@@ -9,7 +9,7 @@ namespace Tests.Shared;
 public static class WeatherForecastGenerator
 {
     private static uint _id = 1;
-    public static List<WeatherForecast>? WeatherForecasts { get; set; } = [];
+    public static List<WeatherForecast>? WeatherForecasts { get; set; }
     private static Faker? _f;
 
     private static readonly string[] Summaries =
@@ -47,6 +47,7 @@ public static class WeatherForecastGenerator
     /// </summary>
     public static void GenerateStaticData()
     {
+        WeatherForecasts = new List<WeatherForecast>();
         WeatherForecasts?.AddRange(new[]
         {
             new WeatherForecast()
