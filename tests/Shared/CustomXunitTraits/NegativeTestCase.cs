@@ -1,7 +1,7 @@
 ﻿namespace Tests.Shared.CustomXunitTraits;
 
 /// <summary>
-/// Apply this attribute to an xUnit test method to specify it is a Negative Path (a.k.a Happy Path) test
+/// Apply this attribute to an xUnit test method to specify it is a Negative Path (a.k.a Sad Path) test
 /// </summary>
 /// <remarks>https://www.brendanconnolly.net/organizing-tests-with-xunit-traits/</remarks>
 [TraitDiscoverer("Tests.Shared.CustomXunitTraits.NegativeTestCaseDiscoverer", nameof(Shared))]
