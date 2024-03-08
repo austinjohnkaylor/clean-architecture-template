@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using Source.Domain;
+using Source.Domain.Entities;
 
 namespace Source.Infrastructure.EntityFramework;
 
@@ -8,6 +10,8 @@ namespace Source.Infrastructure.EntityFramework;
 /// </summary>
 public class DatabaseContext : DbContext
 {
+    public DbSet<WeatherForecast> WeatherForecasts { get; set; }
+    
     public DatabaseContext()
     {
         
@@ -20,6 +24,8 @@ public class DatabaseContext : DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        modelBuilder.Entity<WeatherForecast>().HasBaseType<EntityBase>();
+        base.OnModelCreating(modelBuilder);
+        //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
