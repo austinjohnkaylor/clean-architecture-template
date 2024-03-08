@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{2099E517-8D04-4F02-9543-DEE9DF69FDC6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4F7059AF-B6FD-404F-85F0-B2BB12CB9DBC}"
+	ProjectSection(SolutionItems) = preProject
+		tests\README.md = tests\README.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "source\Domain\Domain.csproj", "{68397AB5-1BAB-4BDE-99C6-D4718B3A2A0E}"
 EndProject
