@@ -86,19 +86,16 @@ public class RepositoryBase<T>(ILogger<UnitOfWork> logger, DatabaseContext datab
     /// </summary>
     /// <param name="entity">The entity of type T</param>
     /// <param name="cancellationToken"></param>
-    public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
+    public Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
     {
-        T? result = await _entity.FindAsync([entity.Id], cancellationToken: cancellationToken);
-        
-        if (result == null)
-        {
-            logger.LogWarning("{entity} with id {id} not found.", typeof(T).Name, entity.Id);
-            return;
-        }
+        _entity.Attach(entity);
+        _entity.Entry(entity).State = EntityState.Modified;
         
         SetUpdatedFields(entity);
         logger.LogInformation("Updating {entity}.", typeof(T).Name);
+
         _entity.Update(entity);
+        return Task.CompletedTask;
     }
 
     /// <summary>
@@ -106,23 +103,20 @@ public class RepositoryBase<T>(ILogger<UnitOfWork> logger, DatabaseContext datab
     /// </summary>
     /// <param name="entities">The list of entities of type T to update</param>
     /// <param name="cancellationToken"></param>
-    public async Task UpdateRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default)
+    public Task UpdateRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default)
     {
         var listOfEntities = entities.ToList();
         
         foreach (T entity in listOfEntities)
         {
-            T? result = await _entity.FindAsync([entity.Id], cancellationToken: cancellationToken);
-            if (result == null)
-            {
-                logger.LogWarning("{entity} with id {id} not found.", typeof(T).Name, entity.Id);
-                continue;
-            }
             SetUpdatedFields(entity);
+            _entity.Attach(entity);
+            _entity.Entry(entity).State = EntityState.Modified;
         }
         
         logger.LogInformation("Updating {count} {entity}s.", listOfEntities.Count, typeof(T).Name);
         _entity.UpdateRange(listOfEntities);
+        return Task.CompletedTask;
     }
 
     /// <summary>
