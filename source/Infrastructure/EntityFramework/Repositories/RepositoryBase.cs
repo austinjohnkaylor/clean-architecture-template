@@ -31,7 +31,7 @@ public class RepositoryBase<T>(ILogger<UnitOfWork> logger, DatabaseContext datab
     /// <param name="id">The unique identifier for the entity</param>
     /// <param name="cancellationToken"></param>
     /// <returns>The entity that has the unique identifier or an empty entity if no entity is found with the unique identifier</returns>
-    public async Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<T?> GetByIdAsync(uint id, CancellationToken cancellationToken = default)
     {
         logger.LogInformation("Getting {entity} by id {id}.", typeof(T).Name, id);
         T? result = await _entity.FindAsync([id], cancellationToken: cancellationToken);
