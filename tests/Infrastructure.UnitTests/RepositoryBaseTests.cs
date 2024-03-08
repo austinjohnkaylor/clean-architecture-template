@@ -42,7 +42,7 @@ public class RepositoryBaseTests
         context.SaveChanges();
     }
 
-    [Fact, PositivePathTest]
+    [Fact, PositiveTestCase]
     public async Task GetAllAsync_Should_Return_All_Entities()
     {
         // Arrange
@@ -56,7 +56,7 @@ public class RepositoryBaseTests
         result.Should().HaveCount(10);
     }
     
-    [Fact, PositivePathTest]
+    [Fact, PositiveTestCase]
     public async Task GetByIdAsync_Should_Return_Entity_By_Id()
     {
         // Arrange
@@ -72,7 +72,7 @@ public class RepositoryBaseTests
         result!.Id.Should().Be(id);
     }
     
-    [Fact, PositivePathTest]
+    [Fact, PositiveTestCase]
     public async Task GetWhereAsync_Should_Return_Entities_That_Match_Predicate()
     {
         // Arrange
@@ -86,7 +86,7 @@ public class RepositoryBaseTests
         result.Should().HaveCount(1);
     }
     
-    [Fact, PositivePathTest]
+    [Fact, PositiveTestCase]
     public async Task AddAsync_Should_Add_Entity()
     {
         // Arrange
@@ -108,7 +108,7 @@ public class RepositoryBaseTests
         result.Id.Should().NotBe(0);
     }
     
-    [Fact, PositivePathTest]
+    [Fact, PositiveTestCase]
     public async Task AddRangeAsync_Should_Add_Range_Of_Entities()
     {
         // Arrange
@@ -142,7 +142,7 @@ public class RepositoryBaseTests
         count.Should().Be(12);
     }
     
-    [Fact, PositivePathTest]
+    [Fact, PositiveTestCase]
     public async Task UpdateAsync_Should_Update_Entity()
     {
         // Arrange
@@ -162,7 +162,7 @@ public class RepositoryBaseTests
         updatedWeatherForecast!.Summary.Should().Be("Updated Summary");
     }
     
-    [Fact, PositivePathTest]
+    [Fact, PositiveTestCase]
     public async Task UpdateRangeAsync_Should_Update_Range_Of_Entities()
     {
         // Arrange
@@ -181,7 +181,7 @@ public class RepositoryBaseTests
         updatedWeatherForecasts.Should().HaveCount(2);
     }
     
-    [Fact, PositivePathTest]
+    [Fact, PositiveTestCase]
     public async Task DeleteAsync_Should_Delete_Entity()
     {
         // Arrange
@@ -199,7 +199,7 @@ public class RepositoryBaseTests
         deletedWeatherForecast.Should().BeNull();
     }
     
-    [Fact, PositivePathTest]
+    [Fact, PositiveTestCase]
     public async Task DeleteRangeAsync_Should_Delete_Range_Of_Entities()
     {
         // Arrange
