@@ -216,4 +216,69 @@ public class RepositoryBaseTests
         // Assert
         deletedWeatherForecasts.Should().BeEmpty();
     }
+    
+    [Fact, PositiveTestCase]
+    public async Task GetAllAsync_Should_Return_Empty_List_When_No_Entities_Exist()
+    {
+        // Arrange
+        await using DatabaseContext context = new(_contextOptions);
+        var repository = new RepositoryBase<WeatherForecast>(_mockLogger.Object, context);
+        context.RemoveRange(context.WeatherForecasts);
+        await context.SaveChangesAsync();
+
+        // Act
+        var result = await repository.GetAllAsync();
+
+        // Assert
+        result.Should().BeEmpty();
+    }
+    
+    [Fact, NegativeTestCase]
+    public async Task GetByIdAsync_Should_Return_Null_When_Entity_Does_Not_Exist()
+    {
+        // Arrange
+        await using DatabaseContext context = new(_contextOptions);
+        var repository = new RepositoryBase<WeatherForecast>(_mockLogger.Object, context);
+        uint id = 0;
+
+        // Act
+        WeatherForecast? result = await repository.GetByIdAsync(id);
+
+        // Assert
+        result.Should().BeNull();
+    }
+    
+    [Fact, NegativeTestCase]
+    public async Task GetWhereAsync_Should_Return_Empty_List_When_No_Entities_Match_Predicate()
+    {
+        // Arrange
+        await using DatabaseContext context = new(_contextOptions);
+        var repository = new RepositoryBase<WeatherForecast>(_mockLogger.Object, context);
+
+        // Act
+        var result = await repository.GetWhereAsync(wf => wf.City == "Amsterdam");
+
+        // Assert
+        result.Should().BeEmpty();
+    }
+    
+    [Fact, NegativeTestCase]
+    public async Task GetByIdAsync_Should_Return_Null_When_Entity_Does_Not_Exist_With_Invalid_Id()
+    {
+        // Arrange
+        await using DatabaseContext context = new(_contextOptions);
+        var repository = new RepositoryBase<WeatherForecast>(_mockLogger.Object, context);
+        const uint id = 100;
+
+        // Act
+        WeatherForecast? result = await repository.GetByIdAsync(id);
+
+        // Assert
+        result.Should().BeNull();
+    }
+    
+    // TODO: Add test for AddAsync with invalid entity
+    // TODO: Add test for AddAsync with existing entity
+    // TODO: Add test for AddRangeAsync with invalid entities
+    // TODO: Add test for AddRangeAsync with existing entities
 }
