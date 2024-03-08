@@ -4,20 +4,20 @@
 /// Apply this attribute to an xUnit test method to specify it is a Negative Path (a.k.a Happy Path) test
 /// </summary>
 /// <remarks>https://www.brendanconnolly.net/organizing-tests-with-xunit-traits/</remarks>
-[TraitDiscoverer("Tests.Shared.CustomXunitTraits.NegativePathTestDiscoverer", nameof(Shared))]
+[TraitDiscoverer("Tests.Shared.CustomXunitTraits.NegativeTestCaseDiscoverer", nameof(Shared))]
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
-public class NegativePathTestAttribute : Attribute, ITraitAttribute
+public class NegativeTestCaseAttribute : Attribute, ITraitAttribute
 {
-    public NegativePathTestAttribute()
+    public NegativeTestCaseAttribute()
     {
         
     }
 }
 
-public class NegativePathTestDiscoverer : ITraitDiscoverer
+public class NegativeTestCaseDiscoverer : ITraitDiscoverer
 {
     public IEnumerable<KeyValuePair<string, string>> GetTraits(IAttributeInfo traitAttribute)
     {
-        yield return new KeyValuePair<string, string>("Category", "Negative Path Test");
+        yield return new KeyValuePair<string, string>("Category", "Negative Test Case");
     }
 }
