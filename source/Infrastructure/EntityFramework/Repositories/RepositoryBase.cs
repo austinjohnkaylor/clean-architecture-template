@@ -128,21 +128,21 @@ public class RepositoryBase<T>(ILogger<UnitOfWork> logger, DatabaseContext datab
     /// <summary>
     /// Deletes an entity of type T from the database.
     /// </summary>
-    /// <param name="entity">The entity of type T to delete</param>
+    /// <param name="id">The id of entity of type T to delete</param>
     /// <param name="cancellationToken"></param>
-    public async Task DeleteAsync(T entity, CancellationToken cancellationToken = default)
+    public async Task DeleteAsync(uint id, CancellationToken cancellationToken = default)
     {
-        T? result = await _entity.FindAsync(entity.Id);
+        T? result = await _entity.FindAsync([id], cancellationToken);
         
         if(result == null)
         {
-            logger.LogWarning("{entity} with id {id} not found.", typeof(T).Name, entity.Id);
+            logger.LogWarning("{entity} with id {id} not found.", typeof(T).Name, id);
             return;
         }
         
         logger.LogInformation("Hard deleting {entity}.", typeof(T).Name);
-        SetDeletedFields(entity);
-        _entity.Remove(entity);
+        SetDeletedFields(result);
+        _entity.Remove(result);
     }
 
     /// <summary>
