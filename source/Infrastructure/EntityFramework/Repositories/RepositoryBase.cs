@@ -144,20 +144,20 @@ public class RepositoryBase<T>(ILogger<UnitOfWork> logger, DatabaseContext datab
     /// </summary>
     /// <param name="entities">The entity of type T to delete</param>
     /// <param name="cancellationToken"></param>
-    public async Task DeleteRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default)
+    public Task DeleteRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default)
     {
         foreach (T entity in entities)
         {
-            T? result = await _entity.FindAsync([entity.Id], cancellationToken);
-            if (result == null)
+            if (_entity.Entry(entity).State == EntityState.Detached)
             {
-                logger.LogWarning("{entity} with id {id} not found.", typeof(T).Name, entity.Id);
-                continue;
+                _entity.Attach(entity);
             }
             logger.LogInformation("Hard deleting {entity}.", typeof(T).Name);
             SetDeletedFields(entity);
             _entity.Remove(entity);
         }
+
+        return Task.CompletedTask;
     }
 
     #region Local Private Methods
