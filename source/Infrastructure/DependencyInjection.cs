@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Source.Application.Interfaces;
 using Source.Infrastructure.EntityFramework;
+using Source.Infrastructure.EntityFramework.Repositories;
 
 namespace Source.Infrastructure;
 
@@ -26,6 +27,7 @@ public static class DependencyInjection
             options.UseSqlServer(connectionString, b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName));
         });
         
+        services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>)); // Register all the repositories
         services.AddScoped<IUnitOfWork, UnitOfWork>(); // must be after repositories
     }
 }
