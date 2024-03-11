@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
 using Source.Application.Interfaces;
+using Source.Domain.Entities;
+using Source.Infrastructure.EntityFramework.Repositories;
 
 namespace Source.Infrastructure.EntityFramework;
 
@@ -13,7 +15,9 @@ public class UnitOfWork(ILogger<UnitOfWork> logger, DatabaseContext context)
     : IUnitOfWork, IDisposable
 {
     private IDbContextTransaction _transaction;
-    
+
+    public IRepositoryBase<WeatherForecast> WeatherForecasts => new RepositoryBase<WeatherForecast>(logger, context);
+
     /// <summary>
     /// Save changes to the database.
     /// </summary>
