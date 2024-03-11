@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Source.Application.Interfaces;
+using Source.Application.Services;
 
 namespace Source.Application;
 
@@ -14,6 +16,7 @@ public static class DependencyInjection
     /// <returns></returns>
     public static void AddApplicationLayer(this IServiceCollection services)
     {
-        services.AddMediator();
+        services.AddScoped<IWeatherForecastService, WeatherForecastService>();
+        //services.AddMediator();
     }
 }
