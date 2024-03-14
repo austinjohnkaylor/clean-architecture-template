@@ -1,33 +1,24 @@
+using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using Source.API.Models;
+using Source.Application.Queries;
+using WeatherForecast = Source.Domain.Entities.WeatherForecast;
 
 namespace Source.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class WeatherForecastController(ILogger<WeatherForecastController> logger, IMediator mediator)
+    : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
+    
+    [HttpGet(Name = "GetAllWeatherForecasts")]
+    public async Task<IEnumerable<WeatherForecast>> GetAll()
     {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
-    private readonly ILogger<WeatherForecastController> _logger;
-
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
-    {
-        _logger = logger;
-    }
-
-    [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
-    {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+        logger.LogInformation("Getting weather forecasts");
+        var result = await mediator.Send(new GetAllWeatherForecastsQuery());
+        var weatherForecasts = result.ToList();
+        logger.LogInformation("Got {count} weather forecasts", weatherForecasts.Count());
+        return weatherForecasts;
     }
 }
