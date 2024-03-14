@@ -17,7 +17,6 @@ public class WeatherForecastControllerTests
     }
     
     [Fact]
-    [Trait("Category","Get")]
     public void Get_Should_Return_WeatherForecasts()
     {
         // Arrange
