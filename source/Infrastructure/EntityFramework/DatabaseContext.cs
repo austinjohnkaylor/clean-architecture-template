@@ -24,8 +24,8 @@ public class DatabaseContext : DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<WeatherForecast>().HasBaseType<EntityBase>();
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<WeatherForecast>().HasBaseType<EntityBase>();
         //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
